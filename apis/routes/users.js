@@ -11,6 +11,40 @@ const path = require('path');
 router.get("/",(req,res,next)=>{
 res.sendFile("signup.html",{ root: path.join(__dirname, '../../views') })
 })
+router.get("/checkauth",(req,res)=>{
+    try{
+        const token = req.headers['authorization'];
+        console.log(token);
+        const decode = jwt.verify(token,'Rishabhjain');
+
+        if(decode){
+            req.userData = decode;
+            const obj = {
+                "status": "success",
+                "message":"authenication verified"
+            }
+            res.json(obj);
+        }
+        else{
+            const obj = {
+                "status": "failure",
+                "message":"authenication verification failed"
+            }        
+            res.json(obj);
+        }
+       
+      
+      
+    }
+    catch(error){
+        console.log(error);
+        const obj = {
+            "status": "failure",
+            "message":"authenication verification failed"
+        }    
+        res.json(obj);
+    }
+})
 router.post("/",(req,res,next)=>{
     console.log("atishay");
     const userdata = {

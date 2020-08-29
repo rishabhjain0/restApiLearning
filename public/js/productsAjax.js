@@ -1,26 +1,22 @@
-const { getAllPRoducts } = require("../../apis/controller/product")
-
-const getAllProducts = async()=>{
-    const api = API_LIST["GET_ALL_PRODUCTS"];
+const checkAuth = async()=>{
     try{
-        let result = await ajax(REQUEST_TYPE["GET"],api,{});
-        console.log(result);
+    let api = API_LIST["CHECK_AUTH"];
 
-        if(result && result.status == "success"){
-            window.localStorage.setItem("TOKEN",result.token);
-            window.location.href = "/products";
-        }
-        else{
-            console.log(result.status, result.error);
-        }
-        
+    let result = await ajax(REQUEST_TYPE["GET"],api,{});
+    if(result && result.status == "success"){
+        console.log("Logged IN");
     }
-    catch(err){
-        console.log(err);
+    else{
+            window.location.href = "/signup";
+    }
+    
+}
+catch(err){
+    window.location.href = "/signup";
+}
 
-    }
 }
 
 $(document).ready(() => {
-    getAllProducts();
+    checkAuth();
 })

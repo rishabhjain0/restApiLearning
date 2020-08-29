@@ -9,7 +9,7 @@ const productsController = require("../controller/product");
 
 
 
-router.get('/',authCheck,productsController.getAllPRoductsPage);
+router.get('/',productsController.getAllPRoductsPage);
 
 router.post('/',authCheck,productsController.postProducts);
 

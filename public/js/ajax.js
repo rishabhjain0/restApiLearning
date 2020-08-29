@@ -2,11 +2,9 @@ const ajax = (type, url, data) => {
    
 
     return new Promise((resolve, reject) => {
+
         //headers: {"Authorization": "Basic xxxx"}
-        const token = localStorage.getItem("TOKEN");
-        $.ajaxSetup({
-            headers:{"Authorization":token}
-        })
+        let token = localStorage.getItem("TOKEN");
         $.ajax({
             type: type,
             url: url,
@@ -14,9 +12,8 @@ const ajax = (type, url, data) => {
             cache: false,
             crossDomain: true,
             processData: true,
-            headers: {"Authorization": token,
-                "random-header":"test"
-        },
+            headers: { "Authorization": localStorage.getItem('TOKEN') },
+
             success: function(data) {
                 resolve(data)
             },
