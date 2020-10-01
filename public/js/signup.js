@@ -1,26 +1,26 @@
-const signup = async(obj)=>{
+const signup = async (obj) => {
     const api = API_LIST["SIGNUP"];
 
-    try{
-        let result = await ajax(REQUEST_TYPE["POST"],api,obj);
-        console.log(result);
+    try {
+        let result = await ajax(REQUEST_TYPE["POST"], api, obj);
 
-        if(result && result.status == "success"){
-            window.localStorage.setItem("TOKEN",result.token);
+
+        if (result && result.status == "success") {
+            window.localStorage.setItem("TOKEN", result.token);
             window.location.href = "/products";
         }
-        else{
+        else {
             console.log(result.status, result.error);
         }
-        
+
     }
-    catch(err){
+    catch (err) {
         console.log(err);
 
     }
 }
 
-const signupObject = ()=>{
+const signupObject = () => {
     const username = $("#usernameId").val();
     const password = $("#passwordId").val();
 
@@ -29,15 +29,14 @@ const signupObject = ()=>{
         "username": username,
         "password": password
     }
-    console.log(obj);
+
     signup(obj);
 }
 
 
-const loadSignUpClicks = ()=>{
+const loadSignUpClicks = () => {
     $("#submitButton").unbind();
     $("#submitButton").click(() => {
-        console.log("hello");
         signupObject();
 
     })
@@ -46,6 +45,5 @@ const loadSignUpClicks = ()=>{
 
 
 $(document).ready(() => {
-    console.log("hiii");
     loadSignUpClicks();
 })

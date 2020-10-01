@@ -1,5 +1,5 @@
 const ajax = (type, url, data) => {
-   
+
 
     return new Promise((resolve, reject) => {
 
@@ -14,10 +14,10 @@ const ajax = (type, url, data) => {
             processData: true,
             headers: { "Authorization": localStorage.getItem('TOKEN') },
 
-            success: function(data) {
+            success: function (data) {
                 resolve(data)
             },
-            error: function(a, b) {
+            error: function (a, b) {
                 console.log(b);
                 reject(a)
             }
