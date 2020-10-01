@@ -11,6 +11,6 @@ const REQUEST_TYPE = {
 
 const API_LIST = {
 
-    SIGNUP : `${API_SERVER}signup/`,
-    CHECK_AUTH : `${API_SERVER}signup/checkauth/`
+    SIGNUP: `${API_SERVER}signup/`,
+    CHECK_AUTH: `${API_SERVER}signup/checkauth/`
 }
